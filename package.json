@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-web",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Web 版个人股票持仓管理工具（静态前端 + 脚本生成 prices.json）",
+  "scripts": {
+    "fetch:prices": "node scripts/fetch-prices.js"
+  },
+  "dependencies": {
+    "yahoo-finance2": "^2.9.0"
+  }
+}
+

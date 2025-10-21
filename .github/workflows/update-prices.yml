@@ -1,0 +1,25 @@
+name: Update Prices
+
+on:
+  schedule:
+    - cron: "0 7 * * *"  # 每天 07:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci || npm i
+      - run: npm run fetch:prices
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/prices.json
+          git commit -m "chore: update prices [skip ci]" || echo "no changes"
+          git push
+

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web 版个人股票持仓管理工具</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <h1>股票持仓管理</h1>
+      <p class="muted">静态网页本地运行；数据保存在浏览器或仓库文件中。</p>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>1) 数据来源与导入</h2>
+        <div class="row gap wrap">
+          <label class="file-label">导入 config.json<input type="file" id="inpConfig" accept=".json" /></label>
+          <label class="file-label">导入 holdings.csv<input type="file" id="inpHoldings" accept=".csv" /></label>
+          <label class="file-label">导入 market_data.csv<input type="file" id="inpMarket" accept=".csv" /></label>
+          <button id="btnFetchPrices">加载 data/prices.json</button>
+          <button id="btnClearAll" class="danger">清空数据</button>
+        </div>
+        <div class="info" id="dataInfo"></div>
+      </section>
+
+      <section class="card">
+        <h2>2) 汇率与参数</h2>
+        <div class="row gap">
+          <div>
+            <label>偏差阈值(%)</label>
+            <input type="number" id="inpThreshold" class="inp short" step="0.1" value="1" />
+          </div>
+          <button id="btnSaveLocal">保存到本地</button>
+          <button id="btnLoadLocal">从本地加载</button>
+          <button id="btnExportConfig">导出配置(JSON)</button>
+        </div>
+        <div class="fx-table">
+          <div class="fx-row fx-header"><div>币种</div><div>FX→JPY</div><div>操作</div></div>
+          <div id="fxBody"></div>
+          <div class="row gap">
+            <input id="fxNewCur" class="inp short" placeholder="币种(如 USD)" />
+            <input id="fxNewVal" type="number" step="any" class="inp short" placeholder="汇率" />
+            <button id="btnAddFX">+ 添加汇率</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3) 资产明细</h2>
+        <div class="row gap">
+          <button id="btnAddRow">+ 新增资产</button>
+          <button id="btnClearHoldings" class="danger">清空持仓</button>
+        </div>
+        <div class="table-wrap">
+          <table id="tbl">
+            <thead>
+              <tr>
+                <th>操作</th>
+                <th>账户</th>
+                <th>标的 Ticker</th>
+                <th>币种</th>
+                <th class="num">数量</th>
+                <th class="num">买入成本/每股</th>
+                <th class="num">目标占比%</th>
+                <th>类别</th>
+                <th>替代 Ticker</th>
+                <th class="num">现价</th>
+                <th class="num">FX→JPY</th>
+                <th class="num">现价(JPY)</th>
+                <th class="num">市值(JPY)</th>
+                <th class="num">成本(JPY)</th>
+                <th class="num">盈亏(JPY)</th>
+                <th class="num">实际占比%</th>
+                <th class="num">偏差%</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="summary" id="summary"></div>
+      </section>
+
+      <section class="card">
+        <h2>4) 图表</h2>
+        <div class="charts">
+          <div class="chart-card"><h3>资产分布（实际占比）</h3><canvas id="pieChart"></canvas></div>
+          <div class="chart-card"><h3>偏差分析（实际 - 目标）</h3><canvas id="barChart"></canvas></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>使用提示</h2>
+        <ul>
+          <li>支持导入三种模板（CSV/JSON），也可从本仓库的 <code>data/prices.json</code> 加载。</li>
+          <li>价格优先级：config/market/prices.json 的数值；JPY 换算遵循 override 与 FX 规则。</li>
+          <li>本工具不会上传你的数据；保存只存于浏览器 LocalStorage。</li>
+        </ul>
+      </section>
+    </main>
+
+    <datalist id="dlTickers"></datalist>
+    <script src="app.js"></script>
+  </body>
+  </html>
+
