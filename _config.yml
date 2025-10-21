@@ -6,9 +6,7 @@ theme: jekyll-theme-cayman
 exclude:
   - node_modules
   - scripts
-  - data
   - templates
   - .github
   - package.json
   - package-lock.json
-

@@ -312,7 +312,7 @@ async function importConfigJSONText(text) {
   }
 }
 
-async function loadPricesJSON() {
+async function loadPricesJSON(silent = false) {
   try {
     const res = await fetch('../data/prices.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP '+res.status);
@@ -323,7 +323,7 @@ async function loadPricesJSON() {
         upsertMarket({ ticker: p.ticker, currency: p.currency, price: p.price });
       }
     }
-    alert('已加载 data/prices.json');
+    if (!silent) alert('已加载 data/prices.json');
   } catch (e) { alert('加载失败：'+e.message); }
 }
 
@@ -402,6 +402,10 @@ document.getElementById('inpConfig').addEventListener('change', (e)=>{
 });
 
 // --- Init ---
-function init(){ loadLocal(); renderAll(); }
+async function init(){
+  loadLocal();
+  // 自动加载最新 data/prices.json（若存在）
+  try { await loadPricesJSON(true); } catch {}
+  renderAll();
+}
 init();
-

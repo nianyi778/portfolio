@@ -93,14 +93,14 @@ async function main() {
   if (tickers.length === 0) {
     console.error('No tickers found in templates. Edit templates or pass your own list.');
   }
-  // FX baseline from data; can be replaced by API call later
-  const fx = { ...fxFromData };
   const now = new Date().toISOString();
-  const out = { prices: [], fx };
+  const out = { prices: [], fx: {} };
+  const currencies = new Set();
   for (const t of tickers) {
     if (t.startsWith('Cash_')) { // cash
       const cur = t.split('_')[1] || 'JPY';
       out.prices.push({ ticker: t, currency: cur, price: 1, fetchedAt: now });
+      currencies.add(cur);
       continue;
     }
     const ysym = mapToYahoo(t);
@@ -109,11 +109,39 @@ async function main() {
       const price = q?.regularMarketPrice ?? null;
       const currency = q?.currency ?? null;
       if (price != null) out.prices.push({ ticker: t, currency, price, fetchedAt: now });
+      if (currency) currencies.add(currency);
       else console.error('No price for', t);
     } catch (e) {
       console.error('fetch fail', t, e.message);
     }
   }
+  // Merge currencies known from data fx as well
+  Object.keys(fxFromData || {}).forEach(c => currencies.add(c));
+
+  // Fetch FX via exchangerate.host (base=JPY, invert to get FX→JPY)
+  async function fetchFXFromApi(curs) {
+    try {
+      const syms = Array.from(curs).filter(Boolean).map(s=>s.toUpperCase()).join(',');
+      const url = `https://api.exchangerate.host/latest?base=JPY&symbols=${encodeURIComponent(syms)}`;
+      const res = await fetch(url, { headers: { 'accept': 'application/json' } });
+      if (!res.ok) throw new Error('HTTP '+res.status);
+      const js = await res.json();
+      const rates = js?.rates || {};
+      const fx = { JPY: 1 };
+      for (const [k, v] of Object.entries(rates)) {
+        if (k === 'JPY') { fx.JPY = 1; continue; }
+        if (v && isFinite(v)) fx[k] = Number((1 / v).toFixed(6)); // invert: (JPY base → currency per JPY) => JPY per currency
+      }
+      return fx;
+    } catch (e) {
+      console.error('FX fetch failed:', e.message);
+      return null;
+    }
+  }
+
+  const fxApi = await fetchFXFromApi(currencies);
+  out.fx = { ...(fxFromData || {}), ...(fxApi || {}) };
+
   await fs.mkdir(new URL('../data/', import.meta.url), { recursive: true });
   await fs.writeFile(new URL('../data/prices.json', import.meta.url), JSON.stringify(out, null, 2));
   console.log('Wrote data/prices.json');
