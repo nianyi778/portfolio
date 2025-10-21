@@ -15,7 +15,7 @@ Web 版个人股票持仓管理工具（文档与模板）。代码你将自行�
 - 前端：React + Tailwind（或任意你熟悉的框架）
 - 图表：Recharts / Chart.js
 - 数据源：先用模板导入；后续可接第三方价格/汇率 API
-- 部署：GitHub Pages（移动端适配）
+- 部署：GitHub Pages（移动端适配）。仓库根已提供 `index.html` 跳转到 `webapp/`，发布后直接访问仓库 Pages 根即可打开应用。
 
 ## 推送到 GitHub（先在网页新建公开仓库 portfolio）
 ```bash
