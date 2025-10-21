@@ -1,0 +1,5 @@
+ticker,currency,current_price,fx_to_jpy,override_ticker
+NASDAQ:NVDA,USD,183.22,150.4,
+HKG:0700,HKD,608,19.4,TYO:2845
+TYO:2845,JPY,3027,1,
+Cash_USD,USD,1,150.4,

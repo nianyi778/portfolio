@@ -1,0 +1,10 @@
+{
+  "baseCurrency": "JPY",
+  "fxRates": { "USD": 150.4, "HKD": 19.4, "CNY": 21.1, "JPY": 1 },
+  "assets": [
+    { "ticker": "NASDAQ:NVDA", "currency": "USD", "quantity": 12, "price": 183.22, "targetWeight": 0.15, "category": "EquityUS", "role": "Core" },
+    { "ticker": "HKG:0700", "currency": "HKD", "quantity": 200, "price": 608, "targetWeight": 0.10, "category": "EquityHK", "role": "Satellite", "overrideTicker": "TYO:2845" },
+    { "ticker": "TYO:2845", "currency": "JPY", "quantity": 300, "price": 3027, "targetWeight": 0.05, "category": "ETF", "role": "Satellite" },
+    { "ticker": "Cash_USD", "currency": "USD", "quantity": 20000, "price": 1, "targetWeight": 0.10, "category": "Cash" }
+  ]
+}

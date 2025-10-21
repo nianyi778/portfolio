@@ -1,0 +1,4 @@
+account,ticker,currency,quantity,cost_per_unit
+sbi,TYO:4051,JPY,100,6200
+ibkr,NASDAQ:NVDA,USD,12,150
+cash,Cash_JPY,JPY,1000000,
