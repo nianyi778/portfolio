@@ -1,0 +1,14 @@
+title: Portfolio
+description: Web 版个人股票持仓管理工具
+theme: jekyll-theme-cayman
+
+# Keep webapp as static assets
+exclude:
+  - node_modules
+  - scripts
+  - data
+  - templates
+  - .github
+  - package.json
+  - package-lock.json
+

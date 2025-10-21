@@ -1,6 +1,8 @@
 name: Update Prices
 
 on:
+  push:
+    branches: [ "main" ]
   schedule:
     - cron: "0 7 * * *"  # 每天 07:00 UTC
   workflow_dispatch: {}
@@ -8,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,4 +26,3 @@ jobs:
           git add data/prices.json
           git commit -m "chore: update prices [skip ci]" || echo "no changes"
           git push
-
