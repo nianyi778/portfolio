@@ -19,33 +19,82 @@ function mapToYahoo(t) {
   return t;
 }
 
-async function readTemplateTickers() {
-  // Prefer templates/market_data.example.csv or templates/config.example.json if present
+async function readTickersAndFX() {
+  // Priority 1: data/config.json
+  try {
+    const cfgPath = new URL('../data/config.json', import.meta.url);
+    const cfg = JSON.parse(await fs.readFile(cfgPath, 'utf-8'));
+    const tickers = new Set();
+    for (const a of (cfg.assets || [])) if (a.ticker) tickers.add(String(a.ticker));
+    const fx = { ...(cfg.fxRates || {}) };
+    if (!('JPY' in fx)) fx.JPY = 1;
+    return { tickers: Array.from(tickers), fx };
+  } catch {}
+
+  // Priority 2: data/market_data.csv
+  try {
+    const csvPath = new URL('../data/market_data.csv', import.meta.url);
+    const csv = await fs.readFile(csvPath, 'utf-8');
+    const lines = csv.trim().split(/\r?\n/);
+    const header = lines.shift();
+    const cols = header.split(',').map(s=>s.trim().toLowerCase());
+    const iTicker = cols.indexOf('ticker');
+    const iCurrency = cols.indexOf('currency');
+    const iFx = cols.indexOf('fx_to_jpy');
+    const tickers = new Set();
+    const fx = {};
+    for (const ln of lines) {
+      const parts = ln.split(',');
+      const t = (parts[iTicker] || '').trim(); if (t) tickers.add(t);
+      if (iCurrency >= 0 && iFx >= 0) {
+        const c = (parts[iCurrency] || '').trim();
+        const v = Number((parts[iFx] || '').trim());
+        if (c && isFinite(v)) fx[c] = v;
+      }
+    }
+    if (!('JPY' in fx)) fx.JPY = 1;
+    return { tickers: Array.from(tickers), fx };
+  } catch {}
+
+  // Priority 3: data/tickers.json
+  try {
+    const listPath = new URL('../data/tickers.json', import.meta.url);
+    const arr = JSON.parse(await fs.readFile(listPath, 'utf-8'));
+    const tickers = Array.isArray(arr) ? arr.map(String) : [];
+    return { tickers, fx: { JPY: 1 } };
+  } catch {}
+
+  // Fallback: templates/config.example.json
+  try {
+    const cfgPath = new URL('../templates/config.example.json', import.meta.url);
+    const cfg = JSON.parse(await fs.readFile(cfgPath, 'utf-8'));
+    const tickers = new Set();
+    for (const a of (cfg.assets||[])) if (a.ticker) tickers.add(a.ticker);
+    const fx = { ...(cfg.fxRates || {}) };
+    if (!('JPY' in fx)) fx.JPY = 1;
+    return { tickers: Array.from(tickers), fx };
+  } catch {}
+
+  // Fallback: templates/market_data.example.csv
   try {
     const csvPath = new URL('../templates/market_data.example.csv', import.meta.url);
     const csv = await fs.readFile(csvPath, 'utf-8');
     const lines = csv.trim().split(/\r?\n/); lines.shift();
     const tickers = new Set();
     for (const ln of lines) { const t = ln.split(',')[0].trim(); if (t) tickers.add(t); }
-    return Array.from(tickers);
+    return { tickers: Array.from(tickers), fx: { JPY: 1 } };
   } catch {}
-  try {
-    const cfgPath = new URL('../templates/config.example.json', import.meta.url);
-    const cfg = JSON.parse(await fs.readFile(cfgPath, 'utf-8'));
-    const tickers = new Set();
-    for (const a of (cfg.assets||[])) if (a.ticker) tickers.add(a.ticker);
-    return Array.from(tickers);
-  } catch {}
-  return [];
+
+  return { tickers: [], fx: { JPY: 1 } };
 }
 
 async function main() {
-  const tickers = await readTemplateTickers();
+  const { tickers, fx: fxFromData } = await readTickersAndFX();
   if (tickers.length === 0) {
     console.error('No tickers found in templates. Edit templates or pass your own list.');
   }
-  // FX baseline (can be replaced by API call later)
-  const fx = { USD: 150.4, HKD: 19.4, CNY: 21.1, JPY: 1 };
+  // FX baseline from data; can be replaced by API call later
+  const fx = { ...fxFromData };
   const now = new Date().toISOString();
   const out = { prices: [], fx };
   for (const t of tickers) {
@@ -71,4 +120,3 @@ async function main() {
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
-
