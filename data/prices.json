@@ -1,0 +1,16 @@
+{
+  "prices": [
+    {
+      "ticker": "Cash_USD",
+      "currency": "USD",
+      "price": 1,
+      "fetchedAt": "2025-10-21T03:24:57.010Z"
+    }
+  ],
+  "fx": {
+    "USD": 150.4,
+    "HKD": 19.4,
+    "CNY": 21.1,
+    "JPY": 1
+  }
+}
