@@ -3,7 +3,7 @@
   --card: #ffffff;
   --muted: #64748b;   /* slate-500 */
   --text: #0f172a;    /* slate-900 */
-  --accent: #2563eb;  /* blue-600 */
+  --accent: #0a4595;  /* deep corporate blue */
   --danger: #dc2626;  /* red-600 */
   --border: #e5e7eb;  /* gray-200 */
   --hover: #f8fafc;   /* slate-50 */
@@ -19,11 +19,11 @@ header h1{margin:6px 0}
 .row{display:flex;align-items:center;gap:12px}
 .row.wrap{flex-wrap:wrap}
 .row.gap{gap:8px}
-button,.file-label{background:#ffffff;border:1px solid var(--border);color:#0f172a;padding:8px 12px;border-radius:10px;cursor:pointer}
+button,.file-label{background:#ffffff;border:1px solid var(--border);color:#0f172a;padding:10px 12px;border-radius:10px;cursor:pointer}
 button:hover,.file-label:hover{background:var(--hover)}
 button.danger{background:#fee2e2;border-color:#fecaca;color:#b91c1c}
-.btn{display:inline-block;text-decoration:none;background:#2563eb;border:1px solid #1d4ed8;color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
-.btn:hover{background:#1d4ed8}
+.btn{display:inline-block;text-decoration:none;background:var(--accent);border:1px solid #083974;color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
+.btn:hover{background:#083974}
 .file-label{display:inline-flex;align-items:center;gap:8px}
 .file-label input{display:none}
 .info{margin-top:8px;color:var(--muted)}
