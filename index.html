@@ -1,51 +1,3 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio · 股票持仓管理</title>
-    <link rel="stylesheet" href="webapp/styles.css" />
-  </head>
-  <body>
-    <header class="container">
-      <h1>股票持仓管理</h1>
-      <p class="muted">统一视角 · 目标与边界 · 规则与节奏</p>
-      <div class="row gap">
-        <a class="btn" href="webapp/">进入应用</a>
-        <a class="btn" href="docs/methodology.zh.html">说明文档（方法论）</a>
-        <a class="btn" href="docs/quickstart.zh.html">极简流程（Quickstart）</a>
-        <a class="btn" href="docs/prd-v3.html">PRD（产品方向）</a>
-        <a class="btn" href="https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet（旧版）</a>
-      </div>
-    </header>
-
-    <main class="container">
-      <section class="card">
-        <h2>简介</h2>
-        <p class="muted">本工具帮助你把多个券商、多个市场、多个币种的资产统一折算、统一管理，并基于“核心/卫星/防御/现金”四层结构进行目标与偏差管理。</p>
-        <div class="row gap">
-          <a class="btn" href="webapp/">现在开始</a>
-          <a class="btn" href="docs/methodology.zh.html">阅读方法论</a>
-          <a class="btn" href="docs/quickstart.zh.html">查看极简流程</a>
-          <a class="btn" href="docs/prd-v3.html">查看 PRD</a>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>快速提示</h2>
-        <ul>
-          <li>应用为纯前端静态页，数据仅保存在浏览器或仓库文件。</li>
-          <li>价格与汇率可自动更新（Actions 生成 <code>data/prices.json</code>）。</li>
-          <li>你只需手动维护：券商 App 截图（用于数量）与目标仓位%。</li>
-          <li>
-            参考旧版 Google Sheet 模板：
-            <a class="btn" href="https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing" target="_blank" rel="noopener">打开</a>
-          </li>
-        </ul>
-      </section>
-    </main>
-  </body>
-  </html>
 ---
 layout: default
 title: Portfolio · Stocks Holdings Manager
@@ -60,16 +12,13 @@ description: Web-based personal portfolio manager with auto prices/FX, docs, and
 </p>
 
 <p>
-  <a class="btn" href="webapp/">Open Web App</a>
-  <a class="btn" href="docs/methodology.zh.html">Methodology (ZH)</a>
-  <a class="btn" href="docs/quickstart.zh.html">Quickstart (ZH)</a>
-  <a class="btn" href="docs/prd-v3.html">PRD v3 (ZH)</a>
-  <a class="btn" href="https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet (legacy)</a>
-  <a class="btn" href="docs/data-spec.html">Data Spec</a>
-</p>
-
-<p>
-  <a class="btn" href="docs/google-sheets-guide.zh.html">Google Sheets Guide (ZH)</a>
+  <a href="webapp/">Open Web App</a>
+  <a href="docs/methodology.zh.html">Methodology (ZH)</a>
+  <a href="docs/quickstart.zh.html">Quickstart (ZH)</a>
+  <a href="docs/prd-v3.html">PRD v3 (ZH)</a>
+  <a href="docs/data-spec.html">Data Spec</a>
+  <a href="docs/google-sheets-guide.zh.html">Google Sheets Guide (ZH)</a>
+  <a href="https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet (legacy)</a>
 </p>
 
 <h2>包含内容</h2>
@@ -83,7 +32,7 @@ description: Web-based personal portfolio manager with auto prices/FX, docs, and
 <h2>开发者说明</h2>
 <ul>
   <li>Schemas: <a href="schemas/config.schema.json">config.schema.json</a>, <a href="schemas/prices.schema.json">prices.schema.json</a></li>
-  <li>Prices workflow: <code>.github/workflows/update-prices.yml</code> (twice daily, manual)</li>
+  <li>Prices workflow: <code>.github/workflows/update-prices.yml</code>（每日两次 + 手动触发）</li>
 </ul>
 
 <h2>文档导航</h2>
@@ -98,6 +47,4 @@ description: Web-based personal portfolio manager with auto prices/FX, docs, and
   <li><a href="templates/market-data.example.csv">Template: market-data.example.csv</a></li>
   <li><a href="templates/config.example.json">Template: config.example.json</a></li>
   <li><a href="data/prices.json">Latest prices.json</a></li>
-  <li><a href="schemas/config.schema.json">Schema: config</a> · <a href="schemas/prices.schema.json">Schema: prices</a></li>
-  
 </ul>
