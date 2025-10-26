@@ -31,10 +31,12 @@ async function readTickersAndFX() {
     return { tickers: Array.from(tickers), fx };
   } catch {}
 
-  // Priority 2: data/market_data.csv
+  // Priority 2: data/market-data.csv (kebab-case), fallback to legacy underscore
   try {
-    const csvPath = new URL('../data/market_data.csv', import.meta.url);
-    const csv = await fs.readFile(csvPath, 'utf-8');
+    let csvPath = new URL('../data/market-data.csv', import.meta.url);
+    let csv;
+    try { csv = await fs.readFile(csvPath, 'utf-8'); }
+    catch { csvPath = new URL('../data/market_data.csv', import.meta.url); csv = await fs.readFile(csvPath, 'utf-8'); }
     const lines = csv.trim().split(/\r?\n/);
     const header = lines.shift();
     const cols = header.split(',').map(s=>s.trim().toLowerCase());
@@ -75,10 +77,12 @@ async function readTickersAndFX() {
     return { tickers: Array.from(tickers), fx };
   } catch {}
 
-  // Fallback: templates/market_data.example.csv
+  // Fallback: templates/market-data.example.csv (kebab-case), fallback to legacy underscore
   try {
-    const csvPath = new URL('../templates/market_data.example.csv', import.meta.url);
-    const csv = await fs.readFile(csvPath, 'utf-8');
+    let csvPath = new URL('../templates/market-data.example.csv', import.meta.url);
+    let csv;
+    try { csv = await fs.readFile(csvPath, 'utf-8'); }
+    catch { csvPath = new URL('../templates/market_data.example.csv', import.meta.url); csv = await fs.readFile(csvPath, 'utf-8'); }
     const lines = csv.trim().split(/\r?\n/); lines.shift();
     const tickers = new Set();
     for (const ln of lines) { const t = ln.split(',')[0].trim(); if (t) tickers.add(t); }

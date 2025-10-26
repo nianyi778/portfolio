@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halftokyo.github.io/portfolio/schemas/config.schema.json",
+  "title": "Portfolio Config",
+  "type": "object",
+  "required": ["baseCurrency", "assets"],
+  "properties": {
+    "baseCurrency": {
+      "type": "string",
+      "description": "Base currency for normalization (recommended JPY)",
+      "examples": ["JPY"]
+    },
+    "fxRates": {
+      "type": "object",
+      "description": "FX→JPY: how many JPY per 1 unit of the currency",
+      "additionalProperties": { "type": "number" },
+      "examples": [ { "USD": 150.4, "HKD": 19.4, "JPY": 1 } ]
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["ticker", "currency"],
+        "additionalProperties": false,
+        "properties": {
+          "ticker": { "type": "string", "description": "Exchange-prefixed ticker (e.g. NASDAQ:NVDA, HKG:0700, TYO:4051)" },
+          "name":   { "type": ["string", "null"] },
+          "currency": { "type": "string" },
+          "quantity": { "type": ["number", "null"], "minimum": 0 },
+          "price": { "type": ["number", "null"], "minimum": 0 },
+          "targetWeight": { "type": ["number", "null"], "minimum": 0, "maximum": 1, "description": "0–1 fraction" },
+          "category": { "type": ["string", "null"] },
+          "role": { "type": ["string", "null"], "enum": ["Core", "Satellite", "Other", null] },
+          "overrideTicker": { "type": ["string", "null"] }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

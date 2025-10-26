@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halftokyo.github.io/portfolio/schemas/prices.schema.json",
+  "title": "Prices and FX",
+  "type": "object",
+  "required": ["prices", "fx"],
+  "properties": {
+    "prices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ticker", "price"],
+        "properties": {
+          "ticker": { "type": "string" },
+          "currency": { "type": ["string", "null"] },
+          "price": { "type": "number", "minimum": 0 },
+          "fetchedAt": { "type": ["string", "null"], "format": "date-time" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fx": {
+      "type": "object",
+      "description": "FX→JPY: JPY per 1 unit of currency",
+      "additionalProperties": { "type": "number", "minimum": 0 }
+    }
+  },
+  "additionalProperties": false
+}
+

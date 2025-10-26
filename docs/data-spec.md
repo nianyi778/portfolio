@@ -2,17 +2,23 @@
 title: 数据规范（Data Spec）
 description: Web App 的数据输入/输出规范、字段定义与计算口径；供开发/对接参考
 layout: default
-version: 1.0.0
+version: 1.1.0
 ---
 
 ## 1. 读者与范围
 - 面向对象：开发/集成方（CSV/JSON 接口）、数据维护者
 - 覆盖范围：模板导入、字段定义、计算口径、价格/汇率与 override 规则、输出产物
 
+交叉阅读：
+- 方法论长文：`docs/methodology.zh.md`
+- 极简流程：`docs/quickstart.zh.md`
+- PRD v3：`docs/prd-v3.md`
+- Google Sheets 指南：`docs/google-sheets-guide.zh.md`
+
 ## 2. 文件与接口
 - 输入（三选一或组合）：
   - `holdings.csv`（持仓明细）
-  - `market_data.csv`（价格/汇率/override）
+  - `market-data.csv`（价格/汇率/override；兼容旧名 `market_data.csv`）
   - `config.json`（统一配置；可完全替代 CSV）
 - 自动数据：
   - `data/prices.json`（由 Actions/脚本周期生成：prices + fx）
@@ -41,7 +47,7 @@ ibkr,NASDAQ:NVDA,USD,12,150,15,Core
 cash,Cash_JPY,JPY,1000000,,10,Cash
 ```
 
-### 3.2 market_data.csv（价格/汇率/覆盖）
+### 3.2 market-data.csv（价格/汇率/覆盖）
 - `ticker`：与 holdings 对齐
 - `currency`：标的币种
 - `current_price`：标的币种价格
@@ -109,5 +115,9 @@ Cash_USD,USD,1,150.4,
 - MarketData.FX ↔ `fx_to_jpy | fxRates[currency]`
 
 ## 6. 版本与变更
+- v1.1.0：统一命名为 kebab-case（market-data.csv）；新增 JSON Schemas（`schemas/`）
 - v1.0.0：首次发布，与 PRD v3/模板 `templates/*` 对齐
 
+附：JSON Schema
+- Config schema: `schemas/config.schema.json`
+- Prices schema: `schemas/prices.schema.json`

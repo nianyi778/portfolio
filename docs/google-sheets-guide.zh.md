@@ -4,7 +4,7 @@ description: 在 Google Sheets 中搭建资产管理系统的结构、函数与�
 layout: default
 ---
 
-📗 Google Sheets 资产管理系统：方法说明 & 函数分享
+📗 Google Sheets 资产管理系统：方法说明 & 函数分享（参见：`docs/data-spec.md` · `docs/prd-v3.md`）
 
 ⸻
 
@@ -33,7 +33,7 @@ layout: default
 
 ⸻
 
-## 📊 Sheet 结构一览（3 张核心表）
+## 📊 Sheet 结构一览（3 张核心表）（Web App 字段规范参见 `docs/data-spec.md`）
 
 ### 1. 🧾 配置表：PortfolioConfig（用于定义“你的理想结构”）
 
@@ -153,4 +153,3 @@ Shares | 当前持有数量
 - PDF 教程文档
 
 告诉我你打算把它发布到哪里，我可以继续为你做适配整理。
-
