@@ -16,9 +16,18 @@ description: Multi‑Broker · Multi‑Currency · Auto Prices & FX · Target We
   .btn:hover{background:#2c974b}
   .btn--ghost{background:#fff;color:#24292e!important;border-color:#d0d7de}
   .btn--ghost:hover{background:#f6f8fa}
-</style>
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+  .btns .btn{margin:0}
+  @media (max-width: 640px){
+    .btns .btn{flex:1 1 calc(50% - 8px);text-align:center}
+    .btns .btn:first-child{flex-basis:100%}
+  }
+  @media (max-width: 420px){
+    .btns .btn{flex-basis:100%}
+  }
+  </style>
 
-<p>
+<p class="btns">
   <a class="btn" href="webapp/">Open Web App</a>
   <a class="btn btn--ghost" href="docs/methodology.zh.html">Methodology (ZH)</a>
   <a class="btn btn--ghost" href="docs/quickstart.zh.html">Quickstart (ZH)</a>
