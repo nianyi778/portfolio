@@ -5,6 +5,7 @@ Web 版个人股票持仓管理工具（文档与模板）。代码你将自行�
 ## 文档
 - PRD 一页纸：`docs/PRD_OnePager_v2.md`
 - 功能模块 + 字段定义：`docs/Modules_and_Fields.md`
+- 实战持仓方法论（个人版·通俗长文）：`docs/methodology.zh.md`
 
 ## 模板样例
 - 持仓明细：`templates/holdings.example.csv`
