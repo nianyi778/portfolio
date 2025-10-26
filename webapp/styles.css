@@ -48,3 +48,12 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .badge.over{color:#2ea043;background:#0f2b1a;border-color:#274b2c}
 .badge.under{color:#e5534b;background:#351616;border-color:#532423}
 .badge.neutral{color:#9aa6b2;background:#121821;border-color:#1f2630}
+/* Responsive header buttons in app header */
+header .row a.btn{ text-align:center }
+@media (max-width: 640px){
+  header .row a.btn{ flex:1 1 calc(50% - 8px) }
+  header .row a.btn:first-child{ flex-basis:100% }
+}
+@media (max-width: 420px){
+  header .row a.btn{ flex-basis:100% }
+}
