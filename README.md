@@ -6,10 +6,11 @@ Web 版个人股票持仓管理工具（文档与模板）。代码你将自行�
 - Google Sheet（旧版）：https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing
 
 ## 文档
- - PRD（v3）：`docs/PRD_OnePager_v3.md`
-- 功能模块 + 字段定义：`docs/Modules_and_Fields.md`
+- PRD（v3）：`docs/prd-v3.md`
+- 数据规范（Data Spec）：`docs/data-spec.md`
 - 实战持仓方法论（个人版·通俗长文）：`docs/methodology.zh.md`
-- Google Sheets 使用说明：`docs/google_sheets_guide.zh.md`
+- 一页极简流程（可立即执行）：`docs/quickstart.zh.md`
+- Google Sheets 使用说明：`docs/google-sheets-guide.zh.md`
 
 ## 模板样例
 - 持仓明细：`templates/holdings.example.csv`
