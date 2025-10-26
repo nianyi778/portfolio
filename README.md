@@ -29,3 +29,4 @@ git push -u origin main
 ```
 
 > `.gitignore` 可后续补充；License 选 MIT 较合适。
+- 一页极简流程（可立即执行）：`docs/quickstart.zh.md`
