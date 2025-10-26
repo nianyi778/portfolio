@@ -2,6 +2,9 @@
 
 Web 版个人股票持仓管理工具（文档与模板）。代码你将自行实现；此处提供需求与数据结构说明，便于外包或自研快速对齐。
 
+## 资源 / 参考
+- Google Sheet（旧版）：https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing
+
 ## 文档
  - PRD（v3）：`docs/PRD_OnePager_v3.md`
 - 功能模块 + 字段定义：`docs/Modules_and_Fields.md`
