@@ -2,12 +2,38 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=webapp/" />
-    <title>Redirecting…</title>
-    <script>location.replace('webapp/');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio · 股票持仓管理</title>
+    <link rel="stylesheet" href="webapp/styles.css" />
   </head>
   <body>
-    <p>正在跳转到应用… 如果未自动跳转，<a href="webapp/">点此进入</a>。</p>
+    <header class="container">
+      <h1>股票持仓管理</h1>
+      <p class="muted">统一视角 · 目标与边界 · 规则与节奏</p>
+      <div class="row gap">
+        <a class="btn" href="webapp/">进入应用</a>
+        <a class="btn" href="docs/methodology.zh.html">说明文档（方法论）</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>简介</h2>
+        <p class="muted">本工具帮助你把多个券商、多个市场、多个币种的资产统一折算、统一管理，并基于“核心/卫星/防御/现金”四层结构进行目标与偏差管理。</p>
+        <div class="row gap">
+          <a class="btn" href="webapp/">现在开始</a>
+          <a class="btn" href="docs/methodology.zh.html">阅读方法论</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>快速提示</h2>
+        <ul>
+          <li>应用为纯前端静态页，数据仅保存在浏览器或仓库文件。</li>
+          <li>价格与汇率可自动更新（Actions 生成 <code>data/prices.json</code>）。</li>
+          <li>你只需手动维护：券商 App 截图（用于数量）与目标仓位%。</li>
+        </ul>
+      </section>
+    </main>
   </body>
   </html>
-
