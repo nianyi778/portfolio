@@ -46,3 +46,41 @@
     </main>
   </body>
   </html>
+---
+layout: default
+title: Portfolio · Stocks Holdings Manager
+description: Web-based personal portfolio manager with auto prices/FX, docs, and templates
+---
+
+<h1>Portfolio · Stocks Holdings Manager</h1>
+
+<p>
+  Manage cross-broker, multi-currency holdings with a clear target-driven approach.
+  Prices and FX can auto-refresh; data stays client-side or in this repo.
+  Start with the web app or read the methodology and quickstart.
+  Legacy Google Sheet is included for reference.
+  Developer data spec and schemas are available below.
+.</p>
+
+<p>
+  <a class="btn" href="webapp/">Open Web App</a>
+  <a class="btn" href="docs/methodology.zh.html">Methodology (ZH)</a>
+  <a class="btn" href="docs/quickstart.zh.html">Quickstart (ZH)</a>
+  <a class="btn" href="docs/prd-v3.html">PRD v3 (ZH)</a>
+  <a class="btn" href="https://docs.google.com/spreadsheets/d/1UPcx6tNZ9wwjNShGZVBwjoMuqfegmCq8vT5cSiQsyBU/edit?usp=sharing" target="_blank" rel="noopener">Google Sheet (legacy)</a>
+  <a class="btn" href="docs/data-spec.html">Data Spec</a>
+</p>
+
+<h2>What’s Inside</h2>
+<ul>
+  <li>Auto prices + FX via GitHub Actions → <code>data/prices.json</code></li>
+  <li>Import templates: <code>templates/holdings.example.csv</code>, <code>templates/market-data.example.csv</code>, <code>templates/config.example.json</code></li>
+  <li>Docs: methodology, quickstart, PRD, Google Sheets guide, data spec</li>
+  <li>Client-only app (no server); mobile-friendly; GitHub Pages hosting</li>
+</ul>
+
+<h2>Developer Notes</h2>
+<ul>
+  <li>Schemas: <a href="schemas/config.schema.json">config.schema.json</a>, <a href="schemas/prices.schema.json">prices.schema.json</a></li>
+  <li>Prices workflow: <code>.github/workflows/update-prices.yml</code> (twice daily, manual)</li>
+</ul>
