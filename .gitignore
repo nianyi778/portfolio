@@ -4,3 +4,5 @@ dist/
 .env
 *.local
 
+push_err.log
+
