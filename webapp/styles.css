@@ -21,6 +21,8 @@ header h1{margin:6px 0}
 button,.file-label{background:#1b2430;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:8px;cursor:pointer}
 button:hover,.file-label:hover{border-color:#334055}
 button.danger{background:#2b1615;border-color:#3e1f1d;color:#f7e1df}
+.btn{display:inline-block;text-decoration:none;background:#1b2430;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:8px}
+.btn:hover{border-color:#334055}
 .file-label{display:inline-flex;align-items:center;gap:8px}
 .file-label input{display:none}
 .info{margin-top:8px;color:var(--muted)}
@@ -46,4 +48,3 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .badge.over{color:#2ea043;background:#0f2b1a;border-color:#274b2c}
 .badge.under{color:#e5534b;background:#351616;border-color:#532423}
 .badge.neutral{color:#9aa6b2;background:#121821;border-color:#1f2630}
-
