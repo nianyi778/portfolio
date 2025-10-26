@@ -52,15 +52,12 @@ title: Portfolio · Stocks Holdings Manager
 description: Web-based personal portfolio manager with auto prices/FX, docs, and templates
 ---
 
-<h1>Portfolio · Stocks Holdings Manager</h1>
+<h1>Portfolio Manager</h1>
 
 <p>
-  Manage cross-broker, multi-currency holdings with a clear target-driven approach.
-  Prices and FX can auto-refresh; data stays client-side or in this repo.
-  Start with the web app or read the methodology and quickstart.
-  Legacy Google Sheet is included for reference.
-  Developer data spec and schemas are available below.
-.</p>
+  跨券商、多币种的个人持仓管理工具。以“目标占比”为核心，自动统一到 JPY 口径，支持价格与汇率自动更新；数据仅保存在浏览器或仓库中。
+  建议先打开 Web App（英文按钮），或阅读方法论与 Quickstart（中文说明）。下方提供 Data Spec 与 Schemas（开发者参考）。
+</p>
 
 <p>
   <a class="btn" href="webapp/">Open Web App</a>
@@ -75,21 +72,21 @@ description: Web-based personal portfolio manager with auto prices/FX, docs, and
   <a class="btn" href="docs/google-sheets-guide.zh.html">Google Sheets Guide (ZH)</a>
 </p>
 
-<h2>What’s Inside</h2>
+<h2>包含内容</h2>
 <ul>
-  <li>Auto prices + FX via GitHub Actions → <code>data/prices.json</code></li>
-  <li>Import templates: <code>templates/holdings.example.csv</code>, <code>templates/market-data.example.csv</code>, <code>templates/config.example.json</code></li>
-  <li>Docs: methodology, quickstart, PRD, Google Sheets guide, data spec</li>
-  <li>Client-only app (no server); mobile-friendly; GitHub Pages hosting</li>
+  <li>GitHub Actions 自动抓取价格与汇率 → 产出 <code>data/prices.json</code></li>
+  <li>导入模板：<code>templates/holdings.example.csv</code>、<code>templates/market-data.example.csv</code>、<code>templates/config.example.json</code></li>
+  <li>文档：方法论、极简流程、PRD、Google Sheets 指南、Data Spec</li>
+  <li>纯前端应用（无服务器），移动端友好，托管于 GitHub Pages</li>
 </ul>
 
-<h2>Developer Notes</h2>
+<h2>开发者说明</h2>
 <ul>
   <li>Schemas: <a href="schemas/config.schema.json">config.schema.json</a>, <a href="schemas/prices.schema.json">prices.schema.json</a></li>
   <li>Prices workflow: <code>.github/workflows/update-prices.yml</code> (twice daily, manual)</li>
 </ul>
 
-<h2>Documentation</h2>
+<h2>文档导航</h2>
 <ul>
   <li><a href="docs/prd-v3.html">PRD v3 (ZH)</a></li>
   <li><a href="docs/methodology.zh.html">Methodology (ZH)</a></li>
