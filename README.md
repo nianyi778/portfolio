@@ -9,12 +9,13 @@ Web 版个人股票持仓管理工具（文档与模板）。代码你将自行�
 - PRD（v3）：`docs/prd-v3.md`
 - 数据规范（Data Spec）：`docs/data-spec.md`
 - 实战持仓方法论（个人版）：`docs/methodology.zh.md`
+- 我的组合与持仓逻辑（个人版）：`docs/my-portfolio.zh.md`
 - 一页极简流程（可立即执行）：`docs/quickstart.zh.md`
 - Google Sheets 使用说明：`docs/google-sheets-guide.zh.md`
 
 ## 模板样例
 - 持仓明细：`templates/holdings.example.csv`
-- 市场/价格与汇率：`templates/market_data.example.csv`
+- 市场/价格与汇率：`templates/market-data.example.csv`
 - 统一配置：`templates/config.example.json`
 
 ## 开发与部署（建议）
